@@ -440,7 +440,7 @@ if(isset($_GET['act'])){
         
         
         $res['type'] = 'success';
-        $res['msg'] = 'Successfully Shared with attachment '.$report_path.$report_file;
+        $res['msg'] = 'Successfully Shared with attachment '.$report_file;
         $res['name'] = $name;
         $res['report_path'] = $report_path;
         echo json_encode($res);
