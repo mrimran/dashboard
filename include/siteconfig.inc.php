@@ -4,11 +4,11 @@
 # Data Base Connection
 #
 #######################
-error_reporting(0);
+error_reporting(1);
 define('DBHOST', 'localhost'); 
 define('DBUSER', 'root');
-define('DBPASS', 'root');
-define('DBNAME', 'dashboar_lmgsm');
+define('DBPASS', '');
+define('DBNAME', 'dashboard');
 
 $sub = "/dashboard";
 if(strstr($_SERVER['HTTP_HOST'],'dev1')){
@@ -33,6 +33,6 @@ $db = ADONewConnection('mysqli');
 $db->PConnect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Database not found! please install your application properly ".$db->ErrorMsg());
 
 //If memcache enabled enable this as well to improve performance
-$memcache = new Memcached();
-$memcache->addServer('localhost', 11211);
+//$memcache = new Memcached();
+//$memcache->addServer('localhost', 11211);
 ?>

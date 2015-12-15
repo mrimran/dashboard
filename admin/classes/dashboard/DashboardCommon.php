@@ -289,10 +289,12 @@ class DashboardCommon
     public static function getMemcacheData($hash)
     {
         global $memcache;
-        $data = $memcache->get($hash);
-        if ($data) {
-            return $data;
-        }
+		if(isset($memcache)){
+			$data = $memcache->get($hash);
+			if ($data) {
+				return $data;
+			}
+		}
 
         return false;
     }
@@ -300,7 +302,9 @@ class DashboardCommon
     public static function setMemcacheData($hash, $data, $duration = 10800, $compress = 0)
     {
         global $memcache;
-        $memcache->set($hash, $data, $compress, $duration); //enable the result caching for 12 hours.
+		if(isset($memcache)){
+        	$memcache->set($hash, $data, $compress, $duration); //enable the result caching for 12 hours.
+		}
     }
 
     public static function executeAndReturnSingleColResultAndCache($sql, $col, $storeData=true, $memcacheHash="", $returnZeroInsteadOfFalse = true)
