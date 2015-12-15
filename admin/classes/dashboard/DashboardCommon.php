@@ -289,12 +289,12 @@ class DashboardCommon
     public static function getMemcacheData($hash)
     {
         global $memcache;
-		if(isset($memcache)){
-			$data = $memcache->get($hash);
-			if ($data) {
-				return $data;
-			}
-		}
+        if (isset($memcache)) {
+            $data = $memcache->get($hash);
+            if ($data) {
+                return $data;
+            }
+        }
 
         return false;
     }
@@ -302,15 +302,15 @@ class DashboardCommon
     public static function setMemcacheData($hash, $data, $duration = 10800, $compress = 0)
     {
         global $memcache;
-		if(isset($memcache)){
-        	$memcache->set($hash, $data, $compress, $duration); //enable the result caching for 12 hours.
-		}
+        if (isset($memcache)) {
+            $memcache->set($hash, $data, $compress, $duration); //enable the result caching for 12 hours.
+        }
     }
 
-    public static function executeAndReturnSingleColResultAndCache($sql, $col, $storeData=true, $memcacheHash="", $returnZeroInsteadOfFalse = true)
+    public static function executeAndReturnSingleColResultAndCache($sql, $col, $storeData = true, $memcacheHash = "", $returnZeroInsteadOfFalse = true)
     {
         $ret = false;
-        if(!$memcacheHash)
+        if (!$memcacheHash)
             $memcacheHash = md5($sql);
         $cachedData = DashboardCommon::getMemcacheData($memcacheHash);
         if (!$cachedData) {
@@ -319,7 +319,7 @@ class DashboardCommon
             if ($field == '') {
                 $field = 0;
             }
-            if($storeData)
+            if ($storeData)
                 DashboardCommon::setMemcacheData($memcacheHash, $field);
             else
                 DashboardCommon::setMemcacheData($memcacheHash, $res);
@@ -327,12 +327,12 @@ class DashboardCommon
         } else {
             $ret = $cachedData;
         }
-        
-        if($returnZeroInsteadOfFalse === true) {
-            if($ret === false)
+
+        if ($returnZeroInsteadOfFalse === true) {
+            if ($ret === false)
                 $ret = 0;
         }
-        
+
         return $ret;
     }
 
