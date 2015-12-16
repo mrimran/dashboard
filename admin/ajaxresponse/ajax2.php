@@ -382,7 +382,8 @@ if(isset($_GET['act'])){
             $calls = new Calls();
             $calls->setPeriod($report_period);
             if($report_period=='custom'){
-                $calls->setCustomPeriod($_POST['from'], $_POST['to']);
+				//echo $_POST['share_report_period_from']."-".$_POST['share_report_period_to'];exit;
+                $calls->setCustomPeriod($_POST['share_report_period_from'], $_POST['share_report_period_to']);
             }
             $report_file = $calls->savePDFReport();
         } elseif($report_type=='emails'){
@@ -394,7 +395,7 @@ if(isset($_GET['act'])){
             $emails = new Emails();
             $emails->setPeriod($report_period);
             if($report_period=='custom'){
-                $calls->setCustomPeriod($_POST['from'], $_POST['to']);
+                $emails->setCustomPeriod($_POST['share_report_period_from'], $_POST['share_report_period_to']);
             }
             $report_file = $emails->savePDFReport();
         } elseif($report_type=='sms'){
@@ -406,7 +407,7 @@ if(isset($_GET['act'])){
             $sms = new SMS();
             $sms->setPeriod($report_period);
             if($report_period=='custom'){
-                $sms->setCustomPeriod($_POST['from'], $_POST['to']);
+                $sms->setCustomPeriod($_POST['share_report_period_from'], $_POST['share_report_period_to']);
             }
             $report_file = $sms->savePDFReport();
         }
