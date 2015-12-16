@@ -36,7 +36,7 @@ class SMS extends DashboardCommon{
             $this->sms_data_limit_clause = " AND sms_dt>='$start_date_limit'";
         }
         if($end_date_limit!="" && $end_date_limit!="0000-00-00" && !DashboardCommon::is_su()){
-            $this->sms_data_limit_clause = " AND email_date<='$end_date_limit'";
+            //$this->sms_data_limit_clause = " AND sms_dt<='$end_date_limit'";
         }
         
         $this->setPeriod('lifetime');
